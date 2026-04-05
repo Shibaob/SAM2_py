@@ -1,0 +1,34 @@
+cd ~/SAM2_py/segment-anything-2-real-time
+
+conda activate sam2rt
+
+# Using the tiny model (best speed for RTX 2080 SUPER)
+python sam2_realsense_tracker.py --prompt-mode point
+
+# Or with bounding box selection
+python sam2_realsense_tracker.py --prompt-mode bbox
+
+# Or with the small model (better quality, slightly slower)
+python sam2_realsense_tracker.py \
+    --checkpoint checkpoints/sam2.1_hiera_small.pt \
+    --model-cfg configs/sam2.1/sam2.1_hiera_s.yaml
+    
+    
+    
+
+# YOLO 11 + SAM2
+
+# Auto-detect ALL objects (uses COCO 80 classes)
+python sam2_auto_detect_tracker.py
+
+# Small model for better accuracy
+python sam2_auto_detect_tracker.py --yolo-model yolo11s.pt
+
+# Lower confidence to catch more objects
+python sam2_auto_detect_tracker.py --confidence 0.3
+
+# Filter for specific objects relevant to your grasping task
+python sam2_auto_detect_tracker.py --text-filter "cup,bottle,bowl,cell phone,book,scissors"
+
+# Re-detect more frequently (every 30 frames instead of 90)
+python sam2_auto_detect_tracker.py --redetect-interval 30
