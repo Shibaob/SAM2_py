@@ -32,3 +32,28 @@ python sam2_auto_detect_tracker.py --text-filter "cup,bottle,bowl,cell phone,boo
 
 # Re-detect more frequently (every 30 frames instead of 90)
 python sam2_auto_detect_tracker.py --redetect-interval 30
+
+
+
+
+# Grounding DINO + SAM2
+
+# Detect the red objects on your table
+python grounded_sam2_tracker.py --text-prompt "red button. red cap."
+
+# Detect common objects
+python grounded_sam2_tracker.py --text-prompt "cup. bottle. pen. book."
+
+# Broad detection — find anything on the table
+python grounded_sam2_tracker.py --text-prompt "object on table."
+
+# More specific for your lab
+python grounded_sam2_tracker.py --text-prompt "circuit board. screwdriver. cable. tape."
+
+# Lower threshold to catch more objects (if some are missed)
+python grounded_sam2_tracker.py --text-prompt "red cap. bottle." --box-threshold 0.25
+
+# Use the base model for better accuracy (slower)
+python grounded_sam2_tracker.py \
+    --text-prompt "small object. tool. component." \
+    --gdino-model "IDEA-Research/grounding-dino-base"
