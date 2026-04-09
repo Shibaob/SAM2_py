@@ -41,6 +41,14 @@ python sam2_auto_detect_tracker.py --redetect-interval 30
 # Detect the red objects on your table
 python grounded_sam2_tracker.py --text-prompt "red button. red cap."
 
+# Robot grasping exp.
+python grounded_sam2_tracker.py --text-prompt "red cap."
+
+python grounded_sam2_zmq.py --text-prompt "red cap. bottle. cup."
+
+
+
+
 # Detect common objects
 python grounded_sam2_tracker.py --text-prompt "cup. bottle. pen. book."
 
